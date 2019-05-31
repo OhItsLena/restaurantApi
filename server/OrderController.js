@@ -55,7 +55,6 @@ Order.findById(req.params.order_id, function (err, order) {
     if (err)
         res.send(err);
 
-    order.guest = req.body.guest;
     order.products = req.body.products;
 
 // save the contact and check for errors

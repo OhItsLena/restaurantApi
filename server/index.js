@@ -6,13 +6,13 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 // Enable CORS
 let cors = require('cors');
-
 // Initialize the app
 let app = express();
 
 // CORS
 app.use(cors());
 
+let authentication = require('./Auth')
 // Import routes
 let apiRoutes = require("./api-routes")
 
@@ -28,6 +28,8 @@ mongoose.connect('mongodb://localhost/restaurant');
 var db = mongoose.connection;
 // Setup server port
 var port = process.env.PORT || 8081;
+
+app.all("/api/*", authentication.auth);
 
 // Send message for default URL
 app.get('/', (req, res) => res.send('Hello World with Express'));
