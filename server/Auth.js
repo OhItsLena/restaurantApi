@@ -34,8 +34,14 @@ exports.auth = function(req, res, next) {
 
   User.findOne({ name: user.name }, function(err, u) {
     if (err) res.sendStatus(401);
-    if (user.name === u.name && user.pass === u.password) {
-      next();
+    if (u != null) {
+      if (user.name === u.name && user.pass === u.password) {
+        next();
+      } else {
+        res.set("WWW-Authenticate", "Basic realm=Authorization Required");
+        res.sendStatus(401);
+        return;
+      }
     } else {
       res.set("WWW-Authenticate", "Basic realm=Authorization Required");
       res.sendStatus(401);
