@@ -1,24 +1,24 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 // Setup schema
 var productSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    category: {
-        type: String,
-        enum: ['food', 'drink'],
-    }
+  name: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  category: {
+    type: String,
+    enum: ["food", "drink"]
+  }
 });
 
-// Export Contact model
-var Product = module.exports = mongoose.model('product', productSchema);
+// Export model
+var Product = (module.exports = mongoose.model("product", productSchema));
 
-module.exports.get = function (callback, limit) {
-    Product.find(callback).limit(limit);
-}
+module.exports.get = function(callback, limit) {
+  Product.find(callback).limit(limit);
+};

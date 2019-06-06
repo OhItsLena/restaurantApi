@@ -9,12 +9,12 @@ router.get("/", function(req, res) {
   });
 });
 
-// Import contact controllerc
+// Import controllerc
 var OrderController = require("./OrderController");
 var ProductController = require("./ProductController");
 var Authentication = require("./Auth");
 
-// Contact routes
+// routes
 router
   .route("/orders")
   .get(OrderController.index)
